@@ -1,0 +1,32 @@
+.DS_Store
+
+
+### Client ###
+
+logs
+*.log
+npm-debug.log*
+
+dist/
+node_modules/
+
+.env
+
+
+
+### Server ###
+*.class
+*.log
+
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+### Gradle ###
+.gradle
+**/build/
