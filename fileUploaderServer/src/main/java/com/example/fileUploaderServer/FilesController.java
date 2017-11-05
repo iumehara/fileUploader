@@ -1,12 +1,9 @@
 package com.example.fileUploaderServer;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
@@ -25,16 +22,18 @@ public class FilesController {
         return map;
     }
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void savePhoto(@RequestParam("image") MultipartFile file) {
+        if (!file.isEmpty()) {
+            System.out.println("inside file = " + file);
+        }
+    }
+
     @GetMapping("/photo")
     public byte[] getPhoto() throws IOException, URISyntaxException {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-
-
-        Path path1 = Paths.get(getClass().getClassLoader().getResource("kitten.jpg").toURI());
-
-
-        Path path = Paths.get("./kitten.jpg");
-        byte[] bytes = Files.readAllBytes(path1);
+        Path path = Paths.get(getClass().getClassLoader().getResource("kitten.jpg").toURI());
+        byte[] bytes = Files.readAllBytes(path);
         return bytes;
     }
 }
