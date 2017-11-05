@@ -1,3 +1,3 @@
-export const fetchWrapper = options => {
-	return fetch(options)
+export const fetchWrapper = (url, options) => {
+	return fetch(url, options)
 }
